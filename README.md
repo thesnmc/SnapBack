@@ -1,4 +1,4 @@
-# AXON-6: SnapBack Neural Routing Engine
+# SnapBack: Neural Routing Engine
 
 **SnapBack** is a zero-latency, brokerless, offline Brain-Computer Interface (BCI) routing engine. It mathematically filters raw neural telemetry (simulated or physical) to dynamically throttle AI autonomy, kinematic robotic systems, and OS-level hardware based on a human's physiological cognitive state.
 
