@@ -110,5 +110,4 @@ This will print your session statistics and open a highly detailed Matplotlib gr
 ---
 
 ## ⚖️ LICENSE
-Apache License 2.0
 Copyright 2026 thesnmc
