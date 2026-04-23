@@ -1,7 +1,7 @@
 # 🚀 SnapBack: Neural Routing Engine
 > A zero-latency, brokerless Brain-Computer Interface (BCI) routing engine that mathematically filters physiological data to dynamically throttle AI autonomy and OS hardware.
 
-[![License](https://img.shields.io/badge/License-AGPLv3-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-TheSNMC-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Python-lightgrey)]()
 [![Architecture](https://img.shields.io/badge/Architecture-Offline--First-success)]()
 
@@ -77,5 +77,5 @@ SnapBack operates as a decentralized 7-node swarm over `tcp://127.0.0.1:5555`.
 Contributions, issues, and feature requests are welcome. Feel free to check the issues page if you want to contribute to expanding the multi-modal sensors (e.g., OpenCV eye-tracking integration) or optimizing the DSP matrix.
 
 ## 📄 License
-This project is mathematically and physiologically bound under the GNU AGPLv3 License - see the LICENSE file for details. Any network deployment of this system mandates full source-code transparency to prevent closed-source corporate hijacking.  
+Tsee the LICENSE file for details.
 Built by an independent developer in Chennai, India.
