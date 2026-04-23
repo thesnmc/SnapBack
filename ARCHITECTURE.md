@@ -1,6 +1,6 @@
 # 🏗️ Architecture & Design Document: SnapBack Neural Routing Engine
 
-**Version:** 1.0.0-Phase6 | **Date:** 2026-04-23 | **Author:** thesnmc
+**Version:** 1.0.0-Phase6 | **Date:** 2026-04-23 | **Author:** Sujay
 
 ---
 
