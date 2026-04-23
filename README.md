@@ -1,113 +1,81 @@
-# SnapBack: Neural Routing Engine
+# 🚀 SnapBack: Neural Routing Engine
+> A zero-latency, brokerless Brain-Computer Interface (BCI) routing engine that mathematically filters physiological data to dynamically throttle AI autonomy and OS hardware.
 
-**SnapBack** is a zero-latency, brokerless, offline Brain-Computer Interface (BCI) routing engine. It mathematically filters raw neural telemetry (simulated or physical) to dynamically throttle AI autonomy, kinematic robotic systems, and OS-level hardware based on a human's physiological cognitive state.
-
-Built by **thesnmc**, this architecture enforces true "physiological grounding" for AI agents. It does not wait for a behavioral proxy (like a mouse click or a text prompt). If the system detects an Error-Related Negativity (ERN) spike, it physically revokes downstream AI autonomy in milliseconds. Furthermore, the system records all neural telemetry into a permanent, locally encrypted SQLite Black Box, allowing the AI to look backward in time and dynamically diagnose your cognitive fatigue using Retrieval-Augmented Generation (RAG).
-
----
-
-## 🧠 The Architecture Matrix
-
-The swarm operates on a local ZeroMQ publish/subscribe network (`tcp://127.0.0.1:5555`). It consists of seven isolated components:
-
-1. **The DSP Router (`telemetry_stream.py`):** The core engine. It ingests raw BrainFlow EEG data (via hardware or simulation), applies 4th-order Butterworth bandpass filters (1-40Hz for ERN, 12-30Hz for Beta Attention), and broadcasts the data. It also captures a **Session Tag** and logs every millisecond of data to an offline SQLite database.
-2. **The Command Center (`dashboard.py`):** A lightweight FastAPI server pushing ZeroMQ telemetry over WebSockets to a sleek, dark-mode 60FPS **Chart.js dual-line EKG oscilloscope**.
-3. **The OS-Hook AI Agent (`ai_agent.py`):** A local LLM (powered by Ollama). It maps your Beta Attention to its core "Temperature." When autonomy drops, it hard-freezes text generation and triggers an OS-level media interrupt (Play/Pause). It features **Cognitive RAG**, meaning you can ask the AI questions about your focus, and it will read your SQLite database to answer you.
-4. **The Robotics Sandbox (`drone_agent.py`):** A native Python kinematic simulation proving the engine can halt robotic movement mid-flight upon cognitive override.
-5. **The Black Box Visualizer (`read_vault.py`):** A post-mortem data analytics tool. It reads your SQLite vault and renders a high-res, topographical `matplotlib` graph of your brainwaves, marking exact ERN kill-switch events.
-6. **The Vault Toolkit (`seed_vault.py` / `wipe_vault.py`):** Database management tools to inject 10-minute high-density stress tests into the vault or surgically wipe it clean.
-7. **The Swarm Commander (`boot_swarm.py`):** A native Windows Python bootloader that automatically orchestrates and sequences the 4-node terminal ignition.
+[![License](https://img.shields.io/badge/License-AGPLv3-blue.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Python-lightgrey)]()
+[![Architecture](https://img.shields.io/badge/Architecture-Offline--First-success)]()
 
 ---
 
-## ⚙️ Installation Guide (Windows / Python 3.14+)
+## 📖 Overview
+SnapBack solves a critical flaw in modern artificial intelligence: the lack of physiological grounding. Current AI systems wait for a behavioral proxy—like a mouse click or a typed text prompt—to understand human intent. SnapBack bypasses the physical interface entirely by reading raw neural telemetry and translating subconscious cognitive states directly into machine constraints. 
 
-This system is built for bleeding-edge Python environments. All components are strictly offline, zero-knowledge, and local.
+If the system detects an Error-Related Negativity (ERN) spike—the subconscious realization that a mistake has occurred—it physically revokes downstream AI autonomy in milliseconds. This hard-freezes local LLM text generation and triggers an OS-level interrupt to pause system media. Furthermore, it logs every millisecond of this physiological session into a locally encrypted SQLite vault, enabling a Cognitive RAG (Retrieval-Augmented Generation) system where the AI can analyze your brainwaves and diagnose your fatigue over time.
 
-### 1. Prerequisites
-* **Python 3.14+** installed on your Windows machine.
-* **Ollama** installed locally (with the model pulled: run `ollama run llama3.2:1b` in your terminal to verify).
+Designed as a multi-node swarm, SnapBack operates over a local ZeroMQ publish/subscribe network. It acts as the ultimate local-host bridge between the human nervous system and edge-compute AI.
 
-### 2. Environment Setup
-Open PowerShell, navigate to your project folder, and isolate the environment:
+**The Core Mandate:** Complete physiological data sovereignty. Neural telemetry is the most sensitive data in existence. SnapBack operates with a strict zero-cloud policy, ensuring that all DSP filtering, data vaulting, and AI inference execute exclusively on local silicon to protect the user from corporate data extraction.
 
-```powershell
-python -m venv venv
-.\venv\Scripts\Activate.ps1
-```
+## ✨ Key Features
+* **Zero-Latency DSP Routing:** Ingests raw microvolts at 250Hz+ and applies 4th-order Butterworth bandpass filters (1-40Hz for ERN, 12-30Hz for Beta Attention) to calculate real-time Autonomy and Focus indices.
+* **Deep-Throttle AI Constraints:** Maps physiological "Beta Attention" directly to an LLM's inference temperature, making the AI strict when you are focused, and creative when your mind wanders.
+* **Cognitive RAG Memory:** Automatically archives session topography into an offline SQLite Black Box. The AI agent queries this database to act as a personalized neural science officer.
+* **Hardware OS Overrides:** Utilizes native keyboard hooking to physically halt system-wide media and hardware execution the millisecond an ERN spike drops the Autonomy index below 80%.
+* **1-Click Swarm Ignition:** Bypasses complex multi-terminal setups with a native Python Bootloader (`boot_swarm.py`) that sequences and connects all 4 nodes of the matrix instantly.
+* **Hardware Agnostic:** Features a toggleable bridge for real physical EEG headsets (e.g., OpenBCI, Muse), while defaulting to a Synthetic BCI board for accessible developer simulation.
 
-### 3. Install Dependencies
-Install the required mathematical, networking, frontend, and data-science libraries.
+## 🛠️ Tech Stack
+* **Language:** Python 3.14+
+* **Framework:** FastAPI, WebSockets, Tkinter (Kinematics)
+* **Environment:** Windows PowerShell / VS Code
+* **Key Libraries/APIs:** `BrainFlow` (EEG Acquisition), `SciPy` / `NumPy` (Digital Signal Processing), `PyZMQ` (Asynchronous Networking), `Ollama` (Local LLM Inference), `Chart.js` (Hardware-Accelerated UI).
 
-```powershell
-pip install brainflow numpy scipy pyzmq pyautogui fastapi uvicorn websockets tornado ollama pandas matplotlib
-```
+## ⚙️ Architecture & Data Flow
+SnapBack operates as a decentralized 7-node swarm over `tcp://127.0.0.1:5555`. 
 
----
+* **Input:** The `telemetry_stream.py` Router ingests raw neural data from the headset COM port.
+* **Processing:** The Router applies Butterworth filters to isolate specific brainwaves, calculating signal power. It logs this to the SQLite Black Box and blasts a serialized string over the ZMQ network.
+* **Output:** Downstream nodes react independently. The `dashboard.py` server renders a 60FPS dual-line EKG. The `drone_agent.py` halts kinematic movement. The `ai_agent.py` locks LLM temperature and executes PyAutoGUI hooks to pause the OS if an ERN is detected.
 
-## 🔌 The Hardware Bridge (Physical Headset Setup)
-By default, SnapBack boots in Simulation Mode, utilizing BrainFlow's `SYNTHETIC_BOARD` to generate organic, drifting brainwaves for testing.
-If you own physical EEG hardware (e.g., OpenBCI Cyton, Muse, Ganglion), you can instantly bridge the gap to real-world biology:
+## 🔒 Privacy & Data Sovereignty
+* **Data Collection:** Zero external transmission. All telemetry is written strictly to a local `axon6_blackbox.db` SQLite file. 
+* **Permissions Required:** OS-level keystroke permissions are required for `PyAutoGUI` to execute the system-wide media pause (Play/Pause media key emulation).
+* **Cloud Connectivity:** Explicitly disabled. The Ollama LLM runs on local silicon, and the web dashboard runs on a local ASGI loop. 
 
-1. Open `telemetry_stream.py`.
-2. Locate the HARDWARE CONFIGURATION BLOCK at the very top.
-3. Change `USE_REAL_HARDWARE = False` to `True`.
-4. Update `EEG_SERIAL_PORT = "COM3"` to match your headset's Bluetooth/USB port.
+## 🚀 Getting Started
 
----
+### Prerequisites
+* Windows OS with **Python 3.14+** installed.
+* **Ollama** installed locally with the `llama3.2:1b` model pulled (`ollama run llama3.2:1b`).
 
-## 🚀 The Boot Sequence (Running the Swarm)
+### Installation
 
-### Option A: The 1-Click Bootloader (Recommended)
-You do not need to open multiple windows. Simply open one PowerShell terminal, activate your environment, and run the Swarm Commander:
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/yourusername/snapback.git](https://github.com/yourusername/snapback.git)
+   ```
 
-```powershell
-python boot_swarm.py
-```
-This will automatically launch, sequence, and connect the Router, Dashboard, Sandbox, and AI Agent in their own dedicated windows.
+2. **Open your terminal in the project directory and isolate the environment:**
+   ```bash
+   python -m venv venv
+   .\venv\Scripts\Activate.ps1
+   ```
 
-### Option B: Manual Ignition Sequence
-If you prefer to run nodes individually for testing or debugging, open four separate terminal windows, activate the virtual environment (`.\venv\Scripts\Activate.ps1`) in all of them, and boot them in this exact order:
+3. **Install the required engineering and mathematical dependencies:**
+   ```bash
+   pip install brainflow numpy scipy pyzmq pyautogui fastapi uvicorn websockets tornado ollama pandas matplotlib
+   ```
 
-**Terminal 1: Boot the Core Router**
-```powershell
-python telemetry_stream.py
-```
-> The terminal will ask for a Session Tag (e.g., "Coding" or "Gaming"). Type your tag and hit Enter. The Black Box is now recording.
+4. **Ignite the Swarm:**
+   Run the master bootloader to automatically launch and connect the entire matrix in parallel.
+   ```bash
+   python boot_swarm.py
+   ```
+   *(Note: To connect physical BCI hardware, open `telemetry_stream.py` and set `USE_REAL_HARDWARE = True` prior to boot).*
 
-**Terminal 2: Boot the Command Center**
-```powershell
-python dashboard.py
-```
-> Open your browser to http://127.0.0.1:8001 to view the live Chart.js EKG dashboard.
+## 🤝 Contributing
+Contributions, issues, and feature requests are welcome. Feel free to check the issues page if you want to contribute to expanding the multi-modal sensors (e.g., OpenCV eye-tracking integration) or optimizing the DSP matrix.
 
-**Terminal 3: Boot the Robotics Sandbox**
-```powershell
-python drone_agent.py
-```
-
-**Terminal 4: Boot the Cognitive AI Agent**
-*(Tip: Play a YouTube video or Spotify track in the background before running this to witness the OS hardware interrupt).*
-```powershell
-python ai_agent.py
-```
-
----
-
-## 📊 Post-Mortem Analytics (Reading the Black Box)
-When your session is complete, go to the Router Terminal and press `Ctrl + C`. This safely shuts down the DSP engine and seals the `axon6_blackbox.db` SQLite file.
-To view your session topography, run the visualizer from any active terminal:
-
-```powershell
-python read_vault.py
-```
-This will print your session statistics and open a highly detailed Matplotlib graph showing your Beta Attention, Autonomy Index, and the exact timestamps of your ERN spikes.
-
-**Managing the Vault:**
-* To test the visualizer without waiting, run `python seed_vault.py` to inject 10 minutes (6,000 rows) of synthetic stress-test telemetry.
-* To clear the database for a fresh live session, run `python wipe_vault.py`.
-
----
-
-## ⚖️ LICENSE
-Copyright 2026 thesnmc
+## 📄 License
+This project is mathematically and physiologically bound under the GNU AGPLv3 License - see the LICENSE file for details. Any network deployment of this system mandates full source-code transparency to prevent closed-source corporate hijacking.  
+Built by an independent developer in Chennai, India.
